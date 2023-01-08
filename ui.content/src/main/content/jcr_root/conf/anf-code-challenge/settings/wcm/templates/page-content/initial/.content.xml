@@ -11,9 +11,6 @@
             <container
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="anf-code-challenge/components/container">
-                <title
-                    jcr:primaryType="nt:unstructured"
-                    sling:resourceType="anf-code-challenge/components/title"/>
                 <container
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="anf-code-challenge/components/container"

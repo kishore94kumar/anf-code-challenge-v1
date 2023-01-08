@@ -1,0 +1,36 @@
+.anf-user-form-container form {
+	width: 500px;
+	margin: 50px auto;
+	background-color: #88a9971a;
+	padding: 50px;
+}
+
+.anf-user-form-container form label {
+	font-weight: bold;
+}
+
+.anf-user-form-container form .cmp-form-text, .anf-user-form-container form .cmp-form-select {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.anf-user-form-container form .cmp-form-text .cmp-form-text__text,
+.anf-user-form-container form .cmp-form-button,
+.anf-user-form-container form .cmp-form-select select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
+
+.anf-user-form-container form .cmp-form-button {
+	background-color: #000;
+	margin-top: 20px;
+	color: white;
+	cursor: pointer;
+	font-weight: bold;
+}

@@ -32,7 +32,11 @@
                                                 jcr:primaryType="nt:unstructured"
                                                 sling:resourceType="granite/ui/components/coral/foundation/form/select"
                                                 fieldLabel="Countries"
-                                                name="./countries"/>
+                                                name="./countries">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/apps/anf-code-challenge/components/formsoptions/countries"/>
+                                            </countries>
                                         </items>
                                     </column>
                                 </items>
