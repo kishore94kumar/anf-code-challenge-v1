@@ -255,6 +255,7 @@ Bundle-DocURL:
                     <artifactId>filevault-package-maven-plugin</artifactId>
                     <version>1.0.3</version>
                     <configuration>
+                        <allowIndexDefinitions>true</allowIndexDefinitions>
                         <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
                     </configuration>
                 </plugin>
