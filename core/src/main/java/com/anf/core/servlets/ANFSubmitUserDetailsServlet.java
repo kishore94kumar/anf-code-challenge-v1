@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -63,12 +65,14 @@ public class ANFSubmitUserDetailsServlet extends SlingAllMethodsServlet {
 			if(persistUserDetails(req)) {
 				jsonObject.put(RESULT, SUCCESS);
 				resp.getWriter().println(jsonObject.toString());
-				resp.setStatus(200);
+				resp.setStatus(HttpServletResponse.SC_OK);
 			} else {
 				jsonObject.put(RESULT, FAILURE);
 				resp.getWriter().println(jsonObject.toString());
+				resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
 		} catch(JSONException ex) {
+			resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			LOGGER.error(EXCEPTION_MSG , ex.getMessage());
 		}
 	}
