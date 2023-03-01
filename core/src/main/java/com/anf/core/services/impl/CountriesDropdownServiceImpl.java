@@ -50,12 +50,12 @@ public class CountriesDropdownServiceImpl implements CountriesDropdownService {
 	 */
 	@Override
 	public Map<String,String> getCountriesJSON() {
-		Map<String, String> countriesMap = new LinkedHashMap<>();
-		try {
-			Map<String, Object> param = new HashMap<>();
-			param.put(ResourceResolverFactory.SUBSERVICE, "anfService");
-			ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param);
 
+		Map<String, String> countriesMap = new LinkedHashMap<>();
+		Map<String, Object> param = new HashMap<>();
+		param.put(ResourceResolverFactory.SUBSERVICE, "anfService");
+
+		try(ResourceResolver resolver = resolverFactory.getServiceResourceResolver(param)) {
 			Resource countriesJSONResource = resolver.getResource(COUNTRIES_JSON_DAM_PATH);
 			if(countriesJSONResource !=null) {
 				InputStream content = countriesJSONResource.adaptTo(InputStream.class);
@@ -73,6 +73,7 @@ public class CountriesDropdownServiceImpl implements CountriesDropdownService {
 					try {
 						JSONObject countryJSON = (JSONObject) countriesArr.get(index);
 						countriesMap.put(countryJSON.get(CODE).toString(), countryJSON.get(NAME).toString());
+						LOGGER.debug("Countries Map:: {}", countriesMap);
 					} catch (JSONException ex) {
 						LOGGER.error("Exception while trying to iterate countries node {}", ex.getMessage());
 					}

@@ -2,7 +2,6 @@ package com.anf.core.servlets;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
@@ -40,7 +39,6 @@ public class CountriesDropdownServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 1L;
     private static final String TEXT = "text";
     private static final String VALUE = "value";
-    private Map<String, String> countriesMap = new LinkedHashMap<>();
 
     @Reference
     private transient CountriesDropdownService countriesDropdownService;
@@ -55,7 +53,7 @@ public class CountriesDropdownServlet extends SlingSafeMethodsServlet {
             final SlingHttpServletResponse resp) throws ServletException, IOException {
 
         ResourceResolver resolver = req.getResourceResolver();
-        countriesMap = countriesDropdownService.getCountriesJSON();
+        Map<String, String> countriesMap = countriesDropdownService.getCountriesJSON();
 
         @SuppressWarnings({"unchecked", "rawtypes"})
         DataSource ds = new SimpleDataSource(new TransformIterator<>(countriesMap.keySet().iterator(), (Transformer) o -> {
