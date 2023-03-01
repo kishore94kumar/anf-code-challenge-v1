@@ -1,4 +1,12 @@
-
-<div class="country__cmp">
-	Country:
+<div class="cmp-form-select"
+	data-sly-use.countryDropdownModel="com.anf.core.models.CountriesDropdownModel">
+	<label for="anf-country-dropdown">Countries</label>
+	<select class="anf-country-dropdown" name="country" data-sly-list.key="${countryDropdownModel.countriesJSON}">
+		<sly data-sly-test="${countryDropdownModel.countryCode == key}">
+			<option value="${key}" selected>${countryDropdownModel.countriesJSON[key]}</option>
+		</sly>
+		<sly data-sly-test="${countryDropdownModel.countryCode != key}">
+			<option value="${key}">${countryDropdownModel.countriesJSON[key]}</option>
+		</sly>
+	</select>
 </div>

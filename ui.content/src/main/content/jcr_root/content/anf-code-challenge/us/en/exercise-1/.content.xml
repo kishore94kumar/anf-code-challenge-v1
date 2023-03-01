@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:template="/conf/anf-code-challenge/settings/wcm/templates/page-content"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Exercise 1 - ANF User Registration Form"
+        sling:resourceType="anf-code-challenge/components/page">
+        <root
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="anf-code-challenge/components/container">
+            <container
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="anf-code-challenge/components/container">
+                <title
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="anf-code-challenge/components/title"/>
+                <container
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="anf-code-challenge/components/container"
+                    layout="responsiveGrid">
+                    <container
+                        cq:styleIds="[1672916620431]"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="anf-code-challenge/components/form/container"
+                        action="/var/anf-code-challenge"
+                        actionType="foundation/components/form/actions/store"
+                        id="anf-user-form">
+                        <text
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="First Name"
+                            sling:resourceType="anf-code-challenge/components/form/text"
+                            name="first-name"
+                            required="true"
+                            requiredMessage="Please enter first name"
+                            rows="2"
+                            type="text"/>
+                        <text_391226336
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Last Name"
+                            sling:resourceType="anf-code-challenge/components/form/text"
+                            name="last-name"
+                            required="true"
+                            requiredMessage="Please enter last name"
+                            rows="2"
+                            type="text"/>
+                        <text_1585537748
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Age"
+                            sling:resourceType="anf-code-challenge/components/form/text"
+                            name="age"
+                            required="true"
+                            requiredMessage="Please enter your age"
+                            rows="2"
+                            type="number"/>
+                        <country
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="anf-code-challenge/components/form/country"
+                            countries="IN"/>
+                        <button
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="anf-code-challenge/components/form/button"/>
+                    </container>
+                    <container_807140462
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="anf-code-challenge/components/form/container"
+                        action="/content/usergenerated/anf-code-challenge/us/en/sample/cq-gen1672911092806/"
+                        actionType="foundation/components/form/actions/store"/>
+                </container>
+            </container>
+        </root>
+    </jcr:content>
+</jcr:root>
