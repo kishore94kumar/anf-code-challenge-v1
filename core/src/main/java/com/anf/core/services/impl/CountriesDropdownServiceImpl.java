@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.IntStream;
+
 import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
 import org.apache.sling.api.resource.ResourceResolver;
@@ -66,11 +68,15 @@ public class CountriesDropdownServiceImpl implements CountriesDropdownService {
 				}
 
 				JSONObject jsonObj = new JSONObject(sb.toString()); 
-				JSONArray countriesArr = jsonObj.getJSONArray(COUNTRIES);      
-				for (int i = 0; i < countriesArr.length(); i++) {
-					JSONObject countryJSON = (JSONObject) countriesArr.get(i);
-					countriesMap.put(countryJSON.get(CODE).toString(), countryJSON.get(NAME).toString());
-				}
+				JSONArray countriesArr = jsonObj.getJSONArray(COUNTRIES);
+				IntStream.range(0, countriesArr.length()).forEach(index -> {
+					try {
+						JSONObject countryJSON = (JSONObject) countriesArr.get(index);
+						countriesMap.put(countryJSON.get(CODE).toString(), countryJSON.get(NAME).toString());
+					} catch (JSONException ex) {
+						LOGGER.error("Exception while trying to iterate countries node {}", ex.getMessage());
+					}
+				});
 			}
 		} catch(JSONException | LoginException | IOException ex) {
 			LOGGER.error("Exception while fetching countries json {}", ex.getMessage());
