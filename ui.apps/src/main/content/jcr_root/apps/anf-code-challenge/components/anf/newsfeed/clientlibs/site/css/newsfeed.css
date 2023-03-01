@@ -1,0 +1,30 @@
+.news-feed-container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.news-feed-container .news-feed-links {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+}
+
+.news-feed-container .news-feed-links a {
+	text-decoration: none;
+	color: #000;
+}
+
+.news-feed-container .news-feed-links .news-feed-image-container,
+.news-feed-container .news-feed-links .news-feed-image {
+	height: 272px;
+	width: 430px;
+}
+
+.news-feed-container .news-feed-link {
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	margin: 10px;
+	background: #fff;
+}
