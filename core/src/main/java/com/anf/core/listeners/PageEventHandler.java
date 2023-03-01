@@ -57,12 +57,12 @@ public class PageEventHandler implements EventHandler {
 		Map<String, Object> param = new HashMap<>();
 		param.put(ResourceResolverFactory.SUBSERVICE, "anfEventWriteService");
 
-		try {
-			ResourceResolver resourceResolver = resolverFactory.getServiceResourceResolver(param);
+		try(ResourceResolver resourceResolver = resolverFactory.getServiceResourceResolver(param)) {
 			Resource pageResource = resourceResolver.getResource(path + "/" + JcrConstants.JCR_CONTENT);
 			if(pageResource != null) {
 				ModifiableValueMap map = pageResource.adaptTo(ModifiableValueMap.class);
 				map.put("pageCreated", Boolean.TRUE);
+				resourceResolver.refresh();
 				resourceResolver.commit();
 			}
 		} catch (PersistenceException | LoginException e) {
