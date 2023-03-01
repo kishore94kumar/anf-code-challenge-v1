@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 import com.day.cq.search.PredicateGroup;
 import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
-import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
 
 @Component(service = {Servlet.class})
@@ -111,11 +110,15 @@ public class PageQueryServlet extends SlingSafeMethodsServlet {
 			SearchResult result = query.getResult();
 
 			JSONArray jsonArray = new JSONArray();
-			for (Hit hit: result.getHits()) {
-				jsonArray.put(hit.getPath());
-			}
+			result.getHits().forEach(hit -> {
+				try {
+					jsonArray.put(hit.getPath());
+				} catch (RepositoryException e) {
+					LOGGER.error("Error while trying to query the page paths {} ", e.getMessage());
+				}
+			});
 			jsonObj.put(PAGE_LIST, jsonArray);
-		}  catch (RepositoryException | JSONException e) {
+		}  catch (JSONException e) {
 			LOGGER.error(JSON_EXCEPTION_MSG, e.getMessage());
 		}
 		return jsonObj.toString();
