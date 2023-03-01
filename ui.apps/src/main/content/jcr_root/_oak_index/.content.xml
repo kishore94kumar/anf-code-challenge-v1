@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:oak="http://jackrabbit.apache.org/oak/ns/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:rep="internal"
+    jcr:mixinTypes="[rep:AccessControllable]"
+    jcr:primaryType="nt:unstructured">
+    <anfPageIndex
+        jcr:primaryType="oak:QueryIndexDefinition"
+        async="[async]"
+        compatVersion="{Long}2"
+        evaluatePathRestrictions="{Boolean}true"
+        excludedPaths="[/var,/etc/replication,/etc/workflow/instances,/jcr:system]"
+        seed="{Long}2218777566602874146"
+        type="lucene">
+        <indexRules jcr:primaryType="nt:unstructured">
+            <cq:Page jcr:primaryType="nt:unstructured">
+                <properties jcr:primaryType="nt:unstructured">
+                    <anfCodeChallenge
+                        jcr:primaryType="nt:unstructured"
+                        name="jcr:content/anfCodeChallenge"
+                        propertyIndex="{Boolean}true"/>
+                    <jcrCreated
+                        jcr:primaryType="nt:unstructured"
+                        name="jcr:content/jcr:created"
+                        propertyIndex="{Boolean}true"
+                        type="Date"/>
+                </properties>
+            </cq:Page>
+        </indexRules>
+    </anfPageIndex>
+</jcr:root>

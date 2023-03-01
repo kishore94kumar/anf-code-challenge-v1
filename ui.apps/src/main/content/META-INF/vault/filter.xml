@@ -2,4 +2,5 @@
 <workspaceFilter version="1.0">
     <filter root="/apps/anf-code-challenge"/>
     <filter root="/etc/age" mode="merge"/>
+    <filter root="/oak:index/anfPageIndex"/>
 </workspaceFilter>

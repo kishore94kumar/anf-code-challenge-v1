@@ -49,6 +49,8 @@
                 <artifactId>filevault-package-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
+                    <failOnDependencyErrors>false</failOnDependencyErrors>
                     <group>com.anf</group>
                     <name>anf-code-challenge.ui.apps</name>
                     <packageType>application</packageType>
