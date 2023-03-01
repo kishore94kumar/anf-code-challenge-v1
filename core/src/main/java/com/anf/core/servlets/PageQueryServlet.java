@@ -145,9 +145,11 @@ public class PageQueryServlet extends SlingSafeMethodsServlet {
 							+ "ORDER BY page.[jcr:created] ASC";
 			Iterator<Resource> pageResources = resourceResolver.findResources(sqlQuery, javax.jcr.query.Query.JCR_SQL2);
 			JSONArray jsonArray = new JSONArray();
-			for (int i = 0; i < 10 && pageResources.hasNext(); i++) {
+			int i=0;
+			while(pageResources.hasNext() && i < 10) {
 				Resource jsonResource = pageResources.next();
 				jsonArray.put(jsonResource.getPath());
+				i++;
 			}
 			jsonObj.put(PAGE_LIST, jsonArray);
 		}  catch (JSONException e) {
