@@ -8,6 +8,8 @@ import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
@@ -70,12 +72,15 @@ public class PageQueryServlet extends SlingSafeMethodsServlet {
 				response.getWriter().println(getQueryBuilderResults(jsonObj, resourceResolver));
 			} else if (StringUtils.isNotBlank(selector) && selector.equalsIgnoreCase("sql2")) {
 				response.getWriter().println(getSQL2Results(jsonObj, resourceResolver));
+				response.setStatus(HttpServletResponse.SC_OK);
 			} else {
 				jsonObj.put("errorMsg", "Need to use either querybuilder or sql2 selector");
 				response.getWriter().println(jsonObj.toString());
+				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			}
-		}  catch (JSONException | RepositoryException e) {
-			LOGGER.error("Error while fetching page list {}", e);
+		}  catch (JSONException e) {
+			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+			LOGGER.error("Error while fetching page list {}", e.getMessage());
 		} 
 	}
 
@@ -131,7 +136,7 @@ public class PageQueryServlet extends SlingSafeMethodsServlet {
 	 * @return
 	 * @throws RepositoryException
 	 */
-	private String getSQL2Results(JSONObject jsonObj, ResourceResolver resourceResolver) throws RepositoryException {
+	private String getSQL2Results(JSONObject jsonObj, ResourceResolver resourceResolver) {
 		try {
 			final String sqlQuery =
 					"SELECT * FROM [cq:Page] AS page "
